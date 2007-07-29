@@ -1,12 +1,13 @@
 %define	name	kover
 %define	version	3
-%define	release %mkrel 1
+%define	release %mkrel 2
 
 Name:           %{name}
 Summary:        WYSIWYG CD cover printer with CDDB support
 Version:        %{version}
 Release:        %{release}
 Source:         %{name}-%{version}.tar.bz2
+Patch0:		%{name}-fix-mimetypes.patch
 URL:            http://lisas.de/kover
 Group:          Archiving/Other
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -19,6 +20,31 @@ BuildRequires:	desktop-file-utils
 %description
 Kover is an easy to use WYSIWYG CD cover printer with CDDB support. 
 
+%post
+%update_menus
+%update_icon_cache hicolor
+%update_icon_cache locolor
+%update_mime_database
+
+%postun
+%clean_menus
+%clean_icon_cache hicolor
+%clean_icon_cache locolor
+%clean_mime_database
+
+%files -f %name.lang
+%defattr(-,root,root,0755)
+%doc AUTHORS README TODO THANKS ChangeLog
+%{_bindir}/kover
+%{_iconsdir}/hicolor/*/apps/*.png
+%{_iconsdir}/locolor/*/apps/*.png
+%{_datadir}/apps/%{name}
+%{_mandir}/man1/*
+%{_datadir}/applications/%{name}.desktop
+%{_datadir}/mime/packages/%{name}.xml
+%{_datadir}/mimelnk/application/*
+
+#--------------------------------------------------------------------
 %prep
 %setup -q
 
@@ -46,26 +72,3 @@ desktop-file-install --vendor="" \
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-%post
-%update_menus
-%update_icon_cache hicolor
-%update_icon_cache locolor
-%update_mime_database
-
-%postun
-%clean_menus
-%clean_icon_cache hicolor
-%clean_icon_cache locolor
-%clean_mime_database
-
-%files -f %name.lang
-%defattr(-,root,root,0755)
-%doc AUTHORS README TODO THANKS ChangeLog
-%{_bindir}/kover
-%{_iconsdir}/hicolor/*/apps/*.png
-%{_iconsdir}/locolor/*/apps/*.png
-%{_datadir}/apps/%{name}
-%{_mandir}/man1/*
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/mime/packages/%{name}.xml
