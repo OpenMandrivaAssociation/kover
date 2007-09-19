@@ -1,6 +1,6 @@
 %define	name	kover
 %define	version	3
-%define	release %mkrel 2
+%define	release %mkrel 3
 
 Name:           %{name}
 Summary:        WYSIWYG CD cover printer with CDDB support
@@ -64,8 +64,9 @@ mv %{buildroot}%{_datadir}/applnk/Multimedia/%{name}.desktop %{buildroot}%{_data
 
 desktop-file-install --vendor="" \
   --add-category="Utility" \
-  --add-category="AudioVideo" \
   --add-category="DiscBurning" \
+  --add-category="KDE" \
+  --add-category="Qt" \
   --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
 %find_lang %name
