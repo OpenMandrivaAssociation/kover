@@ -10,6 +10,7 @@ Source:         %{name}-%{version}.tar.bz2
 Patch0:		%{name}-fix-mimetypes.patch
 URL:            http://lisas.de/kover
 Group:          Archiving/Other
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 License:	GPLv2 or later
 BuildRequires:	kdelibs-devel
 BuildRequires:	libcdio-devel
