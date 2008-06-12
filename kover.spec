@@ -21,16 +21,24 @@ BuildRequires:	desktop-file-utils
 Kover is an easy to use WYSIWYG CD cover printer with CDDB support. 
 
 %post
+%if %mdkversion < 200900
 %update_menus
 %update_icon_cache hicolor
+%endif
 %update_icon_cache locolor
+%if %mdkversion < 200900
 %update_mime_database
+%endif
 
 %postun
+%if %mdkversion < 200900
 %clean_menus
 %clean_icon_cache hicolor
+%endif
 %clean_icon_cache locolor
+%if %mdkversion < 200900
 %clean_mime_database
+%endif
 
 %files -f %name.lang
 %defattr(-,root,root,0755)
