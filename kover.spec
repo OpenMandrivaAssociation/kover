@@ -22,7 +22,6 @@ Kover is an easy to use WYSIWYG CD cover printer with CDDB support.
 
 %files
 %defattr(-,root,root,0755)
-%doc AUTHORS README TODO THANKS ChangeLog
 %{_bindir}/kover
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_iconsdir}/locolor/*/apps/*.png
