@@ -1,46 +1,26 @@
 %define	name	kover
-%define	version	3
-%define	release %mkrel 4
+%define	version	4
+%define	release %mkrel 1
 
 Name:           %{name}
 Summary:        WYSIWYG CD cover printer with CDDB support
 Version:        %{version}
 Release:        %{release}
 Source:         %{name}-%{version}.tar.bz2
-Patch0:		%{name}-fix-mimetypes.patch
+Patch0:		    %{name}-fix-mimetypes.patch
+patch1:         kover-4-fix-link.patch
 URL:            http://lisas.de/kover
 Group:          Archiving/Other
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 License:	GPLv2 or later
-BuildRequires:	kdelibs-devel
+BuildRequires:	kdelibs4-devel
 BuildRequires:	libcdio-devel
 BuildRequires:	libcddb-devel
-BuildRequires:	desktop-file-utils
 
 %description
 Kover is an easy to use WYSIWYG CD cover printer with CDDB support. 
 
-%post
-%if %mdkversion < 200900
-%update_menus
-%update_icon_cache hicolor
-%endif
-%update_icon_cache locolor
-%if %mdkversion < 200900
-%update_mime_database
-%endif
-
-%postun
-%if %mdkversion < 200900
-%clean_menus
-%clean_icon_cache hicolor
-%endif
-%clean_icon_cache locolor
-%if %mdkversion < 200900
-%clean_mime_database
-%endif
-
-%files -f %name.lang
+%files
 %defattr(-,root,root,0755)
 %doc AUTHORS README TODO THANKS ChangeLog
 %{_bindir}/kover
@@ -48,36 +28,30 @@ Kover is an easy to use WYSIWYG CD cover printer with CDDB support.
 %{_iconsdir}/locolor/*/apps/*.png
 %{_datadir}/apps/%{name}
 %{_mandir}/man1/*
-%{_datadir}/applications/%{name}.desktop
+%{_datadir}/applications/kde4/%{name}.desktop
 %{_datadir}/mime/packages/%{name}.xml
-#%{_datadir}/mimelnk/application/*
+%{_iconsdir}/kover_back_content.png
+%{_iconsdir}/kover_back_title_content.png
+%{_iconsdir}/kover_cdaudio.png
+%{_iconsdir}/kover_front_title-content-right_content-left.png
+%{_iconsdir}/kover_front_title-right_content-left.png
+%{_iconsdir}/kover_front_title_only.png
+%{_iconsdir}/kover_one_page.png
 
 #--------------------------------------------------------------------
+
 %prep
 %setup -q
-
+%patch1 -p1
 %build
-%if "%{_lib}" != "lib"
-kdelibsuffix="--enable-libsuffix=%(A=%{_lib}; echo ${A/lib/})"
-%endif
-%configure2_5x --disable-rpath $kdelibsuffix
+#define _disable_ld_no_undefined 1
+%cmake_kde4
 %make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%makeinstall
-
-mkdir -p %{buildroot}%{_datadir}/applications
-mv %{buildroot}%{_datadir}/applnk/Multimedia/%{name}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
-
-desktop-file-install --vendor="" \
-  --add-category="Utility" \
-  --add-category="DiscBurning" \
-  --add-category="KDE" \
-  --add-category="Qt" \
-  --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
-
-%find_lang %name
+cd build
+make DESTDIR=%buildroot install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
