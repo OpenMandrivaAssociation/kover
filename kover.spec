@@ -1,6 +1,6 @@
 %define	name	kover
 %define	version	4
-%define	release %mkrel 1
+%define	release %mkrel 2
 
 Name:           %{name}
 Summary:        WYSIWYG CD cover printer with CDDB support
@@ -8,7 +8,6 @@ Version:        %{version}
 Release:        %{release}
 Source:         %{name}-%{version}.tar.bz2
 Patch0:		    %{name}-fix-mimetypes.patch
-patch1:         kover-4-fix-link.patch
 URL:            http://lisas.de/kover
 Group:          Archiving/Other
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -41,9 +40,8 @@ Kover is an easy to use WYSIWYG CD cover printer with CDDB support.
 
 %prep
 %setup -q
-%patch1 -p1
+
 %build
-#define _disable_ld_no_undefined 1
 %cmake_kde4
 %make
 
