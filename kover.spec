@@ -12,7 +12,7 @@ patch1:         kover-4-fix-link.patch
 URL:            http://lisas.de/kover
 Group:          Archiving/Other
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-License:	GPLv2 or later
+License:	GPLv2+
 BuildRequires:	kdelibs4-devel
 BuildRequires:	libcdio-devel
 BuildRequires:	libcddb-devel
