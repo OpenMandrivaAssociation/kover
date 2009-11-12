@@ -1,6 +1,6 @@
 %define	name	kover
 %define	version	4
-%define	release %mkrel 3
+%define	release %mkrel 4
 
 Name:           %{name}
 Summary:        WYSIWYG CD cover printer with CDDB support
