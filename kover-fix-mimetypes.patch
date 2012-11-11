@@ -1,0 +1,16 @@
+--- kover/Makefile.am~	2007-07-03 09:17:33.000000000 +0200
++++ kover/Makefile.am	2007-07-29 12:46:56.000000000 +0200
+@@ -30,6 +30,13 @@
+ mimedir = $(datadir)/mime/packages
+ mime_DATA = kover.xml
+ 
++mimetypeapplicationdata_DATA = x-kover.desktop
++mimetypetextapplicationdir = $(kde_mimedir)/application
++
++install-data-local:
++	$(mkinstalldirs) $(DESTDIR)$(mimetypeapplicationdatadir)
++
++
+ KDE_ICON = AUTO
+ 
+ EXTRA_DIST = kover.desktop koverui.rc lo16-app-kover.png lo32-app-kover.png hi32-app-kover.png hi48-app-kover.png x-kover.desktop
