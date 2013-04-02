@@ -19,7 +19,7 @@ BuildRequires:	cdda-devel
 %description
 Kover is an easy to use WYSIWYG CD cover printer with CDDB support. 
 
-%files
+%files -f %{name}.lang
 %defattr(-,root,root,0755)
 %{_bindir}/kover
 %{_iconsdir}/hicolor/*/apps/*.png
@@ -49,6 +49,8 @@ Kover is an easy to use WYSIWYG CD cover printer with CDDB support.
 rm -rf $RPM_BUILD_ROOT
 cd build
 make DESTDIR=%buildroot install
+
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
