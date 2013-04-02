@@ -46,14 +46,13 @@ Kover is an easy to use WYSIWYG CD cover printer with CDDB support.
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
-cd build
-make DESTDIR=%buildroot install
+rm -rf %{buildroot}
+%makeinstall_std -C build
 
 %find_lang %{name}
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 
 %changelog
