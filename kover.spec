@@ -14,6 +14,7 @@ License:	GPLv2+
 BuildRequires:	kdelibs4-devel
 BuildRequires:	libcdio-devel
 BuildRequires:	libcddb-devel
+BuildRequires:	cdda-devel
 
 %description
 Kover is an easy to use WYSIWYG CD cover printer with CDDB support. 
