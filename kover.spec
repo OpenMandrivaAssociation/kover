@@ -1,7 +1,7 @@
 Summary:	WYSIWYG CD cover printer with CDDB support
 Name:		kover
 Version:	6
-Release:	4
+Release:	5
 Group:		Archiving/Other
 License:	GPLv2+
 Url:		http://lisas.de/kover
