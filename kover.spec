@@ -4,7 +4,7 @@ Version:	6
 Release:	10
 Group:		Archiving/Other
 License:	GPLv2+
-Url:		http://lisas.de/kover
+Url:		https://lisas.de/kover
 Source0:	%{name}-%{version}.tar.bz2
 
 BuildRequires:	cdda-devel
