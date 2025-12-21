@@ -7,6 +7,7 @@ License:	GPLv2+
 Url:		https://lisas.de/kover
 Source0:	%{name}-%{version}.tar.bz2
 
+BuildRequires:	make
 BuildRequires:	cdda-devel
 BuildRequires:	kdelibs4-devel
 BuildRequires:	pkgconfig(libcddb)
